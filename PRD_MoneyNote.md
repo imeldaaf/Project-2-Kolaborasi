@@ -13,10 +13,10 @@ dan ketentuan tim
 
 ## 1. Ringkasan Produk
 
-MoneyNote adalah aplikasi web sederhana untuk membantu pengguna mencatat
+MoneyNote adal aplikasi web sederhana untuk membantu pengguna mencatat
 dan memantau pengeluaran pribadi sehari-hari. Pengguna dapat menambahkan
 transaksi, mengelompokkan pengeluaran berdasarkan kategori, melihat
-total pengeluaran, dan memantau rekap pengeluaran per bulan.
+total pengeluaran dan memantau rekap pengeluaran per bulan.
 
 Aplikasi dibuat dengan antarmuka yang sederhana agar mudah digunakan
 tanpa proses yang rumit. Fokus utama versi awal adalah pencatatan dan

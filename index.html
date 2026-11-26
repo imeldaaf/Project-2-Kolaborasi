@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,14 +9,17 @@
   <!-- Script logika aplikasi dikerjakan oleh Anggota 2 pada file script.js -->
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <div class="app-shell">
     <!-- 1. Header -->
     <header class="app-header">
       <div class="brand">
         <div class="brand-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
             <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
           </svg>
         </div>
@@ -52,16 +56,8 @@
           <form id="expense-form" class="expense-form" novalidate>
             <div class="form-group">
               <label for="expense-description" class="form-label">Catatan / Nama Transaksi</label>
-              <input
-                type="text"
-                id="expense-description"
-                name="description"
-                class="form-control"
-                placeholder="Contoh: Makan siang"
-                maxlength="100"
-                autocomplete="off"
-                required
-              />
+              <input type="text" id="expense-description" name="description" class="form-control"
+                placeholder="Contoh: Makan siang" maxlength="100" autocomplete="off" required />
             </div>
 
             <div class="form-row">
@@ -69,29 +65,14 @@
                 <label for="expense-amount" class="form-label">Nominal</label>
                 <div class="input-prefix-group">
                   <span class="input-prefix" aria-hidden="true">Rp</span>
-                  <input
-                    type="number"
-                    id="expense-amount"
-                    name="amount"
-                    class="form-control"
-                    placeholder="15000"
-                    min="1"
-                    step="1"
-                    inputmode="numeric"
-                    required
-                  />
+                  <input type="number" id="expense-amount" name="amount" class="form-control" placeholder="15000"
+                    min="1" step="1" inputmode="numeric" required />
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="expense-date" class="form-label">Tanggal</label>
-                <input
-                  type="date"
-                  id="expense-date"
-                  name="date"
-                  class="form-control"
-                  required
-                />
+                <input type="date" id="expense-date" name="date" class="form-control" required />
               </div>
             </div>
 
@@ -167,7 +148,8 @@
         <!-- Tampilan Kosong (Empty State) saat belum ada transaksi -->
         <div id="empty-state" class="empty-state">
           <div class="empty-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+              stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
               <line x1="9" y1="13" x2="15" y2="13" />
@@ -206,4 +188,5 @@
     </footer>
   </div>
 </body>
+
 </html>
