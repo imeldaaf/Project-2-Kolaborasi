@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoneyNote — Catatan Pengeluaran Harian</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Script logika aplikasi dikerjakan oleh Anggota 2 pada file script.js -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <!-- 1. Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+            <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">MoneyNote</h1>
+          <p class="brand-subtitle">Catatan Pengeluaran Harian</p>
+        </div>
+      </div>
+      <span class="storage-badge" title="Data tersimpan otomatis di browser ini">
+        Penyimpanan Lokal
+      </span>
+    </header>
+
+    <main class="main-grid">
+      <!-- Kolom Kiri: Ringkasan & Form Tambah Transaksi -->
+      <div class="sidebar-column">
+        <!-- 2. Ringkasan Pengeluaran Bulanan -->
+        <section class="card summary-card" aria-labelledby="summary-heading">
+          <div class="summary-top">
+            <h2 id="summary-heading" class="section-label">Total Pengeluaran</h2>
+            <span id="summary-period" class="period-pill">November 2026</span>
+          </div>
+          <p id="monthly-total" class="summary-amount">Rp0</p>
+          <p id="transaction-count" class="summary-meta">0 transaksi pada periode ini</p>
+        </section>
+
+        <!-- 3. Form Tambah Transaksi -->
+        <section class="card form-card" aria-labelledby="form-heading">
+          <div class="card-header">
+            <h2 id="form-heading" class="card-title">Tambah Pengeluaran</h2>
+            <p class="card-desc">Catat transaksi harian Anda dengan cepat.</p>
+          </div>
+
+          <form id="expense-form" class="expense-form" novalidate>
+            <div class="form-group">
+              <label for="expense-description" class="form-label">Catatan / Nama Transaksi</label>
+              <input type="text" id="expense-description" name="description" class="form-control"
+                placeholder="Contoh: Makan siang" maxlength="100" autocomplete="off" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expense-amount" class="form-label">Nominal</label>
+                <div class="input-prefix-group">
+                  <span class="input-prefix" aria-hidden="true">Rp</span>
+                  <input type="number" id="expense-amount" name="amount" class="form-control" placeholder="15000"
+                    min="1" step="1" inputmode="numeric" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="expense-date" class="form-label">Tanggal</label>
+                <input type="date" id="expense-date" name="date" class="form-control" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="expense-category" class="form-label">Kategori</label>
+              <select id="expense-category" name="category" class="form-control" required>
+                <option value="" disabled selected>Pilih kategori</option>
+                <option value="Makanan & Minuman">Makanan &amp; Minuman</option>
+                <option value="Transportasi">Transportasi</option>
+                <option value="Kebutuhan Kuliah">Kebutuhan Kuliah</option>
+                <option value="Belanja">Belanja</option>
+                <option value="Hiburan">Hiburan</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+
+            <!-- Wadah pesan validasi untuk diisi oleh script.js -->
+            <p id="form-error" class="form-error" role="alert" hidden></p>
+
+            <div class="form-actions">
+              <button type="submit" id="submit-btn" class="btn btn-primary">
+                Simpan
+              </button>
+              <button type="button" id="cancel-edit-btn" class="btn btn-secondary" hidden>
+                Batal
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- Kolom Kanan: Filter Periode & Daftar Transaksi -->
+      <section class="card transactions-card" aria-labelledby="list-heading">
+        <div class="transactions-header">
+          <div>
+            <h2 id="list-heading" class="card-title">Daftar Transaksi</h2>
+            <p class="card-desc">Rekap pengeluaran berdasarkan bulan dan tahun.</p>
+          </div>
+
+          <!-- 4. Filter Periode -->
+          <div id="period-filter" class="period-filter" role="group" aria-label="Filter periode">
+            <div class="filter-field">
+              <label for="filter-month" class="sr-only">Bulan</label>
+              <select id="filter-month" name="month" class="form-control filter-select">
+                <option value="01">Januari</option>
+                <option value="02">Februari</option>
+                <option value="03">Maret</option>
+                <option value="04">April</option>
+                <option value="05">Mei</option>
+                <option value="06">Juni</option>
+                <option value="07">Juli</option>
+                <option value="08">Agustus</option>
+                <option value="09">September</option>
+                <option value="10">Oktober</option>
+                <option value="11" selected>November</option>
+                <option value="12">Desember</option>
+              </select>
+            </div>
+
+            <div class="filter-field">
+              <label for="filter-year" class="sr-only">Tahun</label>
+              <select id="filter-year" name="year" class="form-control filter-select">
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026" selected>2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tampilan Kosong (Empty State) saat belum ada transaksi -->
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="9" y1="13" x2="15" y2="13" />
+              <line x1="9" y1="17" x2="13" y2="17" />
+            </svg>
+          </div>
+          <h3 class="empty-title">Belum ada transaksi</h3>
+          <p class="empty-desc">
+            Pengeluaran yang Anda catat untuk periode terpilih akan muncul di sini.
+          </p>
+        </div>
+
+        <!-- 5. Daftar Transaksi (diisi dinamis oleh script.js) -->
+        <!--
+          Struktur item transaksi yang disarankan untuk render oleh script.js:
+          <li class="expense-item" data-id="1">
+            <div class="expense-item-main">
+              <p class="expense-title">Makan siang</p>
+              <div class="expense-meta">
+                <span class="expense-badge">Makanan &amp; Minuman</span>
+                <span class="expense-date">26 Nov 2026</span>
+              </div>
+            </div>
+            <div class="expense-item-actions">
+              <span class="expense-amount">Rp15.000</span>
+              <button type="button" class="btn-delete" aria-label="Hapus transaksi">Hapus</button>
+            </div>
+          </li>
+        -->
+        <ul id="expense-list" class="expense-list" aria-live="polite" hidden></ul>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>MoneyNote &bull; Data disimpan secara lokal di browser Anda</p>
+    </footer>
+  </div>
+</body>
+
+</html>
